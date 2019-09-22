@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 NAME		= libft.a
-CFLAGS		= -Wall -Werror -Wextra -I. -c
+CFLAGS		= -Wall -Werror -Wextra -I./includes -c
 FILES		= ft_memset.c \
 		ft_bzero.c \
 		ft_memcpy.c \
@@ -53,6 +53,7 @@ FILES		= ft_memset.c \
 		ft_strnequ.c \
 		ft_strsub.c \
 		ft_strjoin.c \
+		ft_strjoinfree.c \
 		ft_strtrim.c \
 		ft_strsplit.c \
 		ft_itoa.c \
@@ -76,14 +77,14 @@ FILES		= ft_memset.c \
 		ft_capitalize.c \
 		ft_lst_push_back.c \
 		ft_lst_push_front.c \
-		ft_lst_reverse.c
+		ft_lst_reverse.c \
+		get_next_line.c
 OBJ	= $(FILES:%.c=%.o)
-
+HEADER = includes/libft.h
 all: $(NAME)
 
 
-$(NAME): $(OBJ)
-#	gcc $(CFLAGS) $(FILES)
+$(NAME): $(OBJ) $(HEADER)
 	ar rc $(NAME) $(OBJ)
 	ranlib $(NAME)
 
@@ -92,7 +93,10 @@ $(OBJ): %.o : %.c
 
 clean:
 	rm -f $(OBJ)
+
 fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
+
+.PHONY: all clean fclean re
