@@ -12,7 +12,8 @@
 
 NAME		= libft.a
 CFLAGS		= -Wall -Werror -Wextra -I./includes -c
-SRC		= ft_memset \
+SRC			= \
+		ft_memset \
 		ft_bzero \
 		ft_memcpy \
 		ft_memccpy \
@@ -85,6 +86,7 @@ SRC		= ft_memset \
 		ft_lst_push_front \
 		ft_lst_reverse \
 		get_next_line
+
 OBJ	= $(addprefix $(OBJ_PATH), $(addsuffix .o, $(SRC)))
 HEADER = includes/libft.h
 SRC_PATH = src/
