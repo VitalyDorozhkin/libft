@@ -11,7 +11,11 @@
 # **************************************************************************** #
 
 NAME		= libft.a
+
 CFLAGS		= -Wall -Werror -Wextra -I./includes -c
+
+CC			= gcc
+
 SRC			= \
 		ft_memset \
 		ft_bzero \
@@ -88,8 +92,13 @@ SRC			= \
 		get_next_line
 
 OBJ	= $(addprefix $(OBJ_PATH), $(addsuffix .o, $(SRC)))
+
 HEADER = includes/libft.h
+
+HEADER_GCH = $(addsuffix .gch, $(HEADER))
+
 SRC_PATH = src/
+
 OBJ_PATH = .obj/
 
 all: $(NAME)
@@ -99,11 +108,11 @@ $(NAME): $(OBJ) $(HEADER)
 	ranlib $(NAME)
 
 $(OBJ) : $(OBJ_PATH)%.o : $(SRC_PATH)%.c
-	gcc $(CFLAGS) -o $@ -c $<
+	$(CC) $(CFLAGS) -o $@ -c $<
 
 clean:
 	rm -f $(OBJ)
-
+	rm -f $(HEADER_GCH)
 fclean: clean
 	rm -f $(NAME)
 
