@@ -12,13 +12,14 @@
 
 NAME		= libft.a
 CFLAGS		= -Wall -Werror -Wextra -I./includes -c
-FILES		= ft_memset.c \
+SRC		= ft_memset.c \
 		ft_bzero.c \
 		ft_memcpy.c \
 		ft_memccpy.c \
 		ft_memmove.c \
 		ft_memchr.c \
 		ft_memcmp.c \
+		ft_nbrlen.c \
 		ft_strlen.c \
 		ft_strdup.c \
 		ft_strcpy.c \
@@ -28,11 +29,15 @@ FILES		= ft_memset.c \
 		ft_strlcat.c \
 		ft_strchr.c \
 		ft_strrchr.c \
+		ft_strrev.c \
 		ft_strstr.c \
 		ft_strnstr.c \
 		ft_strcmp.c \
 		ft_strncmp.c \
+		ft_abs.c \
 		ft_atoi.c \
+		ft_itoa_base.c \
+		ft_uitoa_base.c \
 		ft_isalpha.c \
 		ft_isdigit.c \
 		ft_isalnum.c \
@@ -58,6 +63,7 @@ FILES		= ft_memset.c \
 		ft_strsplit.c \
 		ft_itoa.c \
 		ft_putchar.c \
+		ft_putchars.c \
 		ft_putnbr.c \
 		ft_putstr.c \
 		ft_putendl.c \
@@ -79,17 +85,19 @@ FILES		= ft_memset.c \
 		ft_lst_push_front.c \
 		ft_lst_reverse.c \
 		get_next_line.c
-OBJ	= $(FILES:%.c=%.o)
+OBJ	= $(addprefix $(OBJ_PATH), $(SRC:%.c=%.o))
 HEADER = includes/libft.h
-all: $(NAME)
+SRC_PATH = src/
+OBJ_PATH = .obj/
 
+all: $(NAME)
 
 $(NAME): $(OBJ) $(HEADER)
 	ar rc $(NAME) $(OBJ)
 	ranlib $(NAME)
 
-$(OBJ): %.o : %.c
-	gcc $(CFLAGS) $<
+$(OBJ) : $(OBJ_PATH)%.o : $(SRC_PATH)%.c
+	gcc $(CFLAGS) -o $@ -c $<
 
 clean:
 	rm -f $(OBJ)
