@@ -110,4 +110,7 @@ void				ft_lst_push_back(t_list **begin_list, void *content,
 										size_t content_size);
 
 int					get_next_line(const int fd, char **line);
+
+int						ft_printf(const char *format, ...);
+int						ft_fprintf(char *file, const char *format, ...);
 #endif
