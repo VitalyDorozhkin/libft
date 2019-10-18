@@ -12,7 +12,7 @@
 
 NAME		= libft.a
 
-CFLAGS		= -Wall -Werror -Wextra -I./includes -c
+CFLAGS		= -Wall -Werror -Wextra
 
 CC			= gcc
 
@@ -91,28 +91,56 @@ SRC			= \
 		ft_lst_reverse \
 		get_next_line
 
-OBJ	= $(addprefix $(OBJ_PATH), $(addsuffix .o, $(SRC)))
+PRINTF_SRC	= \
+		convert \
+		ft_printf \
+		ft_fprintf \
+		ft_printf_puts \
+		read_flags \
+		print_xob \
+		print_di \
+		print_tyr \
+		print_u \
+		print_s \
+		print_c \
+		print_fff \
+		infin_mult \
+		print_ff \
+		handle_decoded \
+		print_f
 
-HEADER = includes/libft.h
+OBJ			= $(addprefix $(OBJ_PATH), $(addsuffix .o, $(SRC)))
 
-HEADER_GCH = $(addsuffix .gch, $(HEADER))
+PRINTF_OBJ	= $(addprefix $(PRINTF_OBJ_PATH), $(addsuffix .o, $(PRINTF_SRC)))
 
-SRC_PATH = src/
+HEADER		= include/
 
-OBJ_PATH = .obj/
+PRINTF_HEADER	= ft_printf/include/
+
+SRC_PATH	= src/
+
+OBJ_PATH	= .obj/
+
+PRINTF_SRC_PATH = ft_printf/src/
+
+PRINTF_OBJ_PATH = ft_printf/.obj/
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(HEADER)
-	ar rc $(NAME) $(OBJ)
+$(NAME): $(OBJ) $(PRINTF_OBJ) $(HEADER)
+	ar rc $(NAME) $(OBJ) $(PRINTF_OBJ)
 	ranlib $(NAME)
 
 $(OBJ) : $(OBJ_PATH)%.o : $(SRC_PATH)%.c
-	$(CC) $(CFLAGS) -o $@ -c $<
+	$(CC) $(CFLAGS) -I./$(HEADER) -o $@ -c $<
+
+$(PRINTF_OBJ) : $(PRINTF_OBJ_PATH)%.o : $(PRINTF_SRC_PATH)%.c
+	$(CC) $(CFLAGS) -I./$(HEADER) -I./$(PRINTF_HEADER) -o $@ -c $<
 
 clean:
 	rm -f $(OBJ)
-	rm -f $(HEADER_GCH)
+	rm -f $(PRINTF_OBJ)
+
 fclean: clean
 	rm -f $(NAME)
 
