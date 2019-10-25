@@ -82,6 +82,8 @@ SRC			= \
 		ft_lstadd \
 		ft_lstiter \
 		ft_lstmap \
+		ft_lstlen \
+		ft_lstlast \
 		ft_strlcpy \
 		ft_isupper \
 		ft_islower \
