@@ -12,17 +12,17 @@
 
 #include <libft.h>
 
-int ft_lstlen(t_list *lst)
+int	ft_lstlen(t_list *lst)
 {
-	t_list *tmp;
-	int i;
+	t_list	*tmp;
+	int		i;
 
 	i = 0;
 	tmp = lst;
-	while(tmp)
+	while (tmp)
 	{
 		tmp = tmp->next;
 		i++;
-	}	
+	}
 	return (i);
 }

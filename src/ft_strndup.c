@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlen.c                                        :+:      :+:    :+:   */
+/*   ft_strndup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pparalax <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/09 20:35:02 by pparalax          #+#    #+#             */
-/*   Updated: 2019/09/09 20:35:03 by pparalax         ###   ########.fr       */
+/*   Created: 2019/09/05 20:34:08 by pparalax          #+#    #+#             */
+/*   Updated: 2019/09/05 20:34:10 by pparalax         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
 
-t_list	*ft_lstlast(t_list *lst)
+char		*ft_strndup(const char *src, int n)
 {
-	t_list	*tmp;
 	int		i;
+	char	*str;
+	int		len;
 
-	i = 0;
-	tmp = lst;
-	while (tmp && tmp->next)
-	{
-		tmp = tmp->next;
-		i++;
-	}
-	return (tmp);
+	len = ft_strlen(src);
+	n = (n > len) ? len : n;
+	str = (char*)malloc((n + 1) * sizeof(char));
+	if (!str)
+		return (0);
+	i = -1;
+	while (src[++i] != '\0' && i < n)
+		str[i] = src[i];
+	str[i] = '\0';
+	return (str);
 }

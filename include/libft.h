@@ -35,6 +35,7 @@ int					ft_memcmp(const void *s1, const void *s2, size_t n);
 int					ft_nbrlen(long long nbr);
 size_t				ft_strlen(const char *str);
 char				*ft_strdup(const char *src);
+char				*ft_strndup(const char *src, int n);
 char				*ft_strcpy(char *dst, const char *src);
 char				*ft_strncpy(char *dst, const char *src, size_t n);
 char				*ft_strcat(char *dst, const char *src);
@@ -95,7 +96,7 @@ void				ft_lstdel(t_list **alst, void (*del)(void*, size_t));
 void				ft_lstadd(t_list **alst, t_list *new);
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
-int					ft_lstlast(t_list *lst);
+t_list				*ft_lstlast(t_list *lst);
 int					ft_lstlen(t_list *lst);
 
 /*
@@ -113,6 +114,6 @@ void				ft_lst_push_back(t_list **begin_list, void *content,
 
 int					get_next_line(const int fd, char **line);
 
-int						ft_printf(const char *format, ...);
-int						ft_fprintf(char *file, const char *format, ...);
+int					ft_printf(const char *format, ...);
+int					ft_fprintf(char *file, const char *format, ...);
 #endif
